@@ -44,7 +44,6 @@ const Header: React.FC = () => {
       alignItems={"center"}
       boxShadow="rgba(0, 134, 255, 0.75) 0px 0px 15px, rgba(0, 134, 255, 0.5) 0px 0px 3px 1px"
       bg="rgba(49, 56, 220, 0.9)"
-      transition=".5s ease"
       borderRadius="0px 0px 10px 10px"
       _hover={{
         bg: "brand.main"

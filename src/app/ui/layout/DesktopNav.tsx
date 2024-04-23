@@ -19,11 +19,8 @@ const DesktopNav: FC<unknown> = () => {
           <Button
             id={"dekstop-" + navItem[0]}
             key={navItem[0]}
-            variant="nav"
-            color="#00aec1"
-            border="solid #00aec1"
-            borderWidth="0px 0px 2px 0px"
-            borderRadius={8}
+            variant="stickyNav"
+            color=""
           >
             {navItem[0]}
           </Button>

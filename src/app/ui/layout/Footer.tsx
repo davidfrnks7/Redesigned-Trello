@@ -32,8 +32,43 @@ const Footer: React.FC = () => {
         justifyItems="center"
         justifyContent="center"
       >
+        <VStack spacing={2}>
+          <MotionBox whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link
+              href="https://github.com/davidfrnks7/redesigned-trello"
+              target="_blank"
+              rel="noopener"
+            >
+              <Button
+                color="whiteAlpha"
+                variant="credits"
+                leftIcon={<Icon icon="akar-icons:github-fill" />}
+              >
+                {"View Codebase"}
+              </Button>
+            </Link>
+          </MotionBox>
+          <Text color="brand.footerText" fontSize="xs">
+            <span role="img" aria-label="copyright">
+              {"©"}
+            </span>{" "}
+            {`2024 - ${new Date().getFullYear()} David Franks`}
+          </Text>
+        </VStack>
+        <VStack color="brand.footerText" spacing={0}>
+          <Text fontSize="xs">
+            {
+              "An MVP app made by David Franks to demonstrate skills in UI/UX design, accessibility compliance, REST APIs, and database management."
+            }
+          </Text>
+          <Text fontSize="xs">
+            {
+              "Logos are copyright or trademarked to their respective organizations"
+            }
+          </Text>
+        </VStack>
         <HStack color="brand.footerText" spacing={2}>
-          <Text fontSize="xl">Built on</Text>
+          <Text fontSize="xl">{"Built on"}</Text>
           <Link
             aria-label="Next.js"
             href="https://nextjs.org/"
@@ -44,7 +79,7 @@ const Footer: React.FC = () => {
           </Link>
         </HStack>
         <HStack color="brand.footerText" spacing={2}>
-          <Text fontSize="xl">Designed with</Text>
+          <Text fontSize="xl">{"Designed with"}</Text>
           <Link
             aria-label="Chakra UI"
             href="https://chakra-ui.com/"
@@ -59,7 +94,7 @@ const Footer: React.FC = () => {
           </Link>
         </HStack>
         <HStack color="brand.footerText" spacing={2}>
-          <Text fontSize="xl">Deployed by</Text>
+          <Text fontSize="xl">{"Deployed using"}</Text>
           <Link
             aria-label="Vercel"
             href="https://vercel.com/"
@@ -69,37 +104,6 @@ const Footer: React.FC = () => {
             <Icon fontSize="1.75rem" icon="logos:vercel" />
           </Link>
         </HStack>
-        <VStack spacing={2}>
-          <MotionBox whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Link
-              href="https://github.com/davidfrnks7/portfolio-website"
-              target="_blank"
-              rel="noopener"
-            >
-              <Button
-                color="whiteAlpha"
-                variant="credits"
-                leftIcon={<Icon icon="akar-icons:github-fill" />}
-              >
-                View Codebase
-              </Button>
-            </Link>
-          </MotionBox>
-          <Text color="brand.footerText" fontSize="xs">
-            <span role="img" aria-label="copyright">
-              ©
-            </span>{" "}
-            2021 - {new Date().getFullYear()} David Franks
-          </Text>
-        </VStack>
-        <VStack color="brand.footerText" spacing={0}>
-          <Text fontSize="xs">
-            A personal portfolio website for David Franks
-          </Text>
-          <Text fontSize="xs">
-            Logos are copyright or trademarked to their respective organizations
-          </Text>
-        </VStack>
       </VStack>
     </Box>
   );
