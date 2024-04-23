@@ -2,11 +2,7 @@ import React, { FC, Fragment } from "react";
 import { Button, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
 import navItems, { NavItem } from "./navItems";
 
-interface MobileNavProps {
-  handleNav: (string: RefNames) => void;
-}
-
-const MobileNav: FC<MobileNavProps> = ({ handleNav }: MobileNavProps) => {
+const MobileNav: FC<unknown> = () => {
   return (
     <MenuList
       as="nav"
@@ -34,13 +30,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleNav }: MobileNavProps) => {
             }}
           >
             {index === 0 ? <MenuDivider /> : <Fragment></Fragment>}
-            <Button
-              w="100vw"
-              variant={"nav"}
-              p={0}
-              m="auto"
-              onClick={() => handleNav(navItem[1])}
-            >
+            <Button w="100vw" variant={"nav"} p={0} m="auto">
               {navItem[0]}
             </Button>
             <MenuDivider />

@@ -14,11 +14,11 @@ import { motion } from "framer-motion";
 
 export const MotionBox = motion<BoxProps>(Box);
 
-const Footer = (): JSX.Element => {
+const Footer: React.FC = () => {
   return (
     <Box
-      bg="brand.footer"
       as="footer"
+      bg="brand.footer"
       w="100%"
       h="auto"
       pos="sticky"
