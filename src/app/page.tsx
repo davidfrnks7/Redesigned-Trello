@@ -1,5 +1,8 @@
+import React from "react";
 import { Box } from "@chakra-ui/layout";
 
-export default function Home() {
+const Home = (): JSX.Element => {
   return <Box>{"Placeholder"}</Box>;
 }
+
+export default Home

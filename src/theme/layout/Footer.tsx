@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import {
   Box,
   HStack,
@@ -10,41 +10,11 @@ import {
   BoxProps
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import BackToTopButton from "./BackToTopButton";
 import { motion } from "framer-motion";
 
 export const MotionBox = motion<BoxProps>(Box);
 
-interface FooterProps {
-  navTo: (refName: RefNames) => void;
-}
-
-const Footer = ({ navTo }: FooterProps): JSX.Element => {
-  const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
-  const lastScroll = useRef<number>(0);
-
-  const handleScroll = (): void => {
-    if (window.scrollY >= 500) {
-      setShowBackToTop(true);
-    } else {
-      setShowBackToTop(false);
-    }
-
-    const currentScroll =
-      window.pageYOffset || document.documentElement.scrollTop;
-
-    lastScroll.current = currentScroll <= 0 ? 0 : currentScroll;
-  };
-
-  useEffect(() => {
-    if (!window) {
-      console.log("waiting for mount");
-    } else if (window) {
-      window.addEventListener("scroll", handleScroll);
-    }
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+const Footer = (): JSX.Element => {
   return (
     <Box
       bg="brand.footer"
@@ -54,7 +24,6 @@ const Footer = ({ navTo }: FooterProps): JSX.Element => {
       pos="sticky"
       zIndex={1}
     >
-      <BackToTopButton show={showBackToTop} navTo={navTo} />
       <VStack
         h="auto"
         w="auto"

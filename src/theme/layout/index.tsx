@@ -19,7 +19,7 @@ const Layout: FC<LayoutProps> = (
     <Box w="100%">
       <Header {...pageProps} navTo={navTo} highlight={highlight} />
       <main>{children}</main>
-      <Footer navTo={navTo} />
+      <Footer />
     </Box>
   );
 };
