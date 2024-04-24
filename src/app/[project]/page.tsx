@@ -4,7 +4,13 @@ import Table from "../components/table";
 
 const ProjectPage = (): JSX.Element => {
   return (
-    <HStack h="100vh" w="100vw" justifyContent="center" alignItems="center" spacing={4}>
+    <HStack
+      h="100vh"
+      w="100vw"
+      justifyContent="center"
+      alignItems="center"
+      spacing={4}
+    >
       <Table />
       <Table />
       <Table />

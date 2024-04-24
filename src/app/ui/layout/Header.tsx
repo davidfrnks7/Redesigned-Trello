@@ -21,7 +21,6 @@ const Header: React.FC = () => {
   const [hover, setHover] = useState<boolean>(false);
 
   const menuIcon = (): JSX.Element => {
-
     const iconType = {
       default: <Icon icon="bx:bx-menu-alt-right" />,
       hover: <Icon icon="bx:bx-menu" />,
