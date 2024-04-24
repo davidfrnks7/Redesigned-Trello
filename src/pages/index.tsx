@@ -1,15 +1,13 @@
 import React from "react";
 import Layout from "../app/layout";
 import { NextPageWithLayout } from "@/types/page";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 const Home: NextPageWithLayout = () => {
   return (
     <main>
       <Flex h="71vh" w="100vw" justifyContent="center" alignItems="center">
-        <Heading h="auto" w="auto">
-          {"Placeholder"}
-        </Heading>
+        <Text fontSize="3xl">{"Home page"}</Text>
       </Flex>
     </main>
   );

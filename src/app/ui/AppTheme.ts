@@ -33,7 +33,7 @@ const AppTheme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "gray.900"
+        bg: "#314a9e"
       }
     }
   },
