@@ -14,11 +14,14 @@ import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 
 const Header: React.FC = () => {
+  const appName = "Redesigned Trello";
+
   // Mobile Menu Icon && Open/Close
   const [open, setOpen] = useState<boolean>(false);
   const [hover, setHover] = useState<boolean>(false);
 
   const menuIcon = (): JSX.Element => {
+
     const iconType = {
       default: <Icon icon="bx:bx-menu-alt-right" />,
       hover: <Icon icon="bx:bx-menu" />,
@@ -62,7 +65,7 @@ const Header: React.FC = () => {
         display={{ base: "flex", lg: "none" }}
       >
         <Heading as="h1" fontSize="lg">
-          {"David Franks Portfolio Website"}
+          {appName}
         </Heading>
       </Flex>
 
@@ -82,7 +85,7 @@ const Header: React.FC = () => {
         >
           <Box w="100%" display={{ base: "none", lg: "flex" }} m="auto">
             <Heading as="h1" size="md">
-              {"David Franks Portfolio Website"}
+              {appName}
             </Heading>
           </Box>
           <DesktopNav />

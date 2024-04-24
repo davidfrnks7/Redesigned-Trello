@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, HStack } from "@chakra-ui/react";
+import { Button, HStack, Link } from "@chakra-ui/react";
 import navItems, { NavItem } from "./navItems";
 
 const DesktopNav: FC<unknown> = () => {
@@ -16,14 +16,11 @@ const DesktopNav: FC<unknown> = () => {
     >
       {navItems.map((navItem: NavItem) => {
         return (
-          <Button
-            id={"dekstop-" + navItem[0]}
-            key={navItem[0]}
-            variant="stickyNav"
-            color=""
-          >
-            {navItem[0]}
-          </Button>
+          <Link href={navItem[1]} key={"dekstop-" + navItem[0]}>
+            <Button id={"dekstop-" + navItem[0]} variant="stickyNav" color="">
+              {navItem[0]}
+            </Button>
+          </Link>
         );
       })}
     </HStack>

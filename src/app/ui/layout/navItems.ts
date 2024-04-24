@@ -1,14 +1,10 @@
-export type NavItem = [string, RefNames];
+export type NavItem = [string, string];
 export type NavItems = NavItem[];
 
 const navItems: NavItems = [
-  ["Home", "Greeting"],
-  ["About", "About"],
-  ["Work Experience", "Work"],
-  ["Education", "Education"],
-  ["Skills", "Skills"],
-  ["Projects", "Projects"],
-  ["Contact", "Contact"]
+  ["Home", "/"],
+  ["Project", "/project"],
+  ["About", "/about"]
 ];
 
 export default navItems;
