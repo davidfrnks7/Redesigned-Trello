@@ -6,7 +6,7 @@ import { Flex, Text } from "@chakra-ui/react";
 const Home: NextPageWithLayout = () => {
   return (
     <main>
-      <Flex h="71vh" w="100vw" justifyContent="center" alignItems="center">
+      <Flex h="100vh" w="100vw" justifyContent="center" alignItems="center">
         <Text fontSize="3xl">{"Home page"}</Text>
       </Flex>
     </main>

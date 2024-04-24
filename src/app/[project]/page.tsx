@@ -1,14 +1,14 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import React from "react";
-import Table from "./table";
+import Table from "../components/table";
 
 const ProjectPage = (): JSX.Element => {
   return (
-    <Flex h="100vh" w="100vw" justifyContent="center" alignItems="center">
-      <Text fontSize="3xl">
-        <Table />
-      </Text>
-    </Flex>
+    <HStack h="100vh" w="100vw" justifyContent="center" alignItems="center" spacing={4}>
+      <Table />
+      <Table />
+      <Table />
+    </HStack>
   );
 };
 
