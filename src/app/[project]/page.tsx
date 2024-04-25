@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import React from "react";
-import Table from "../components/table";
+import Table from "../components/Table";
 
 const ProjectPage = (): JSX.Element => {
   return (

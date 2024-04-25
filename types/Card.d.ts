@@ -28,6 +28,6 @@ interface TableCard {
   activity: CardComment[];
   order: number;
   completed: boolean;
-  creationDate: Date;
-  updatedDate: Date;
+  creationDate: string;
+  updatedDate: string;
 }

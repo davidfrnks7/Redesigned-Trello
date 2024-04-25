@@ -94,7 +94,7 @@ const tablesSlice = createSlice({
       const { tableTitle, projectId } = action.payload;
       const newId = createId();
       const order = state.length;
-      const newDate = new Date();
+      const newDate = new Date().toString();
       const newCards = [] as TableCard[];
 
       const newTable: TableSlice = {
@@ -147,8 +147,8 @@ const tablesSlice = createSlice({
 
       state = sliceTables;
     },
-    // Remove card from project
-    removeProject(state: TableSlice[], action: PayloadAction<string>) {
+    // Remove table from project
+    removeTable(state: TableSlice[], action: PayloadAction<string>) {
       const deleteId = action.payload;
       const newTables = [...state];
       let tableDeleted = false;
@@ -170,6 +170,6 @@ const tablesSlice = createSlice({
   }
 });
 
-export const { createNewTable, populateTables, removeProject } =
+export const { createNewTable, populateTables, removeTable } =
   tablesSlice.actions;
 export default tablesSlice.reducer;

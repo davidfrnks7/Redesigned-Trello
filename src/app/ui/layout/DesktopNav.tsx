@@ -17,7 +17,7 @@ const DesktopNav: FC<unknown> = () => {
       {navItems.map((navItem: NavItem) => {
         return (
           <Link href={navItem[1]} key={"dekstop-" + navItem[0]}>
-            <Button id={"dekstop-" + navItem[0]} variant="stickyNav" color="">
+            <Button id={"dekstop-" + navItem[0]} variant="nav" color="">
               {navItem[0]}
             </Button>
           </Link>

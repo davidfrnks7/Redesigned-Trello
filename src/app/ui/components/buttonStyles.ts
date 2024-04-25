@@ -32,10 +32,9 @@ const buttonStyles = {
       }
     }),
     project: (props: Dict<never>) => ({
-      bg: "transparent",
-      fontSize: "md",
-      py: 2,
-      px: 4,
+      bg: "brand.secondary",
+      fontSize: "2xl",
+      p: 6,
       boxShadow:
         "rgba(0, 134, 255, 0.2) 0px 0px 15px, rgba(0, 134, 255, 0.15) 0px 0px 3px 1px",
       border: "1px solid rgba(0, 134, 255, 0.4)",
@@ -48,18 +47,7 @@ const buttonStyles = {
           "rgba(0, 104, 255, 0.5) 0px 0px 15px, rgba(0, 104, 255, 0.3) 0px 0px 3px 1px"
       }
     }),
-    nav: (props: Dict<never>) => ({
-      bg: "transparent",
-      fontSize: "md",
-      px: "2",
-      _hover: {
-        bg: mode(
-          whiten("brand.secondary", 20),
-          darken("brand.secondary", 20)
-        )(props)
-      }
-    }),
-    stickyNav: (/* props: Dict<never> */) => ({
+    nav: (/* props: Dict<never> */) => ({
       bg: "transparent",
       fontSize: "md",
       px: "2",
@@ -74,42 +62,6 @@ const buttonStyles = {
       color: "whiteAlpha",
       _hover: {
         bg: mode(whiten("brand.main", 20), darken("brand.main", 20))(props)
-      }
-    }),
-    backToTop: (props: Dict<never>) => ({
-      bg: "rgba(23, 25, 35, 0.5)",
-      fontSize: "lg",
-      py: 2,
-      px: 4,
-      color: "rgba(0, 134, 255, 0.6)",
-      boxShadow:
-        "rgba(0, 134, 255, 0.05) 0px 0px 15px, rgba(0, 134, 255, 0.1) 0px 0px 3px 1px",
-      border: "1px solid rgba(0, 134, 255, 0.15)",
-      _hover: {
-        bg: mode(
-          whiten("brand.secondary", 20),
-          darken("brand.secondary", 20)
-        )(props),
-        boxShadow:
-          "rgba(0, 104, 255, 0.5) 0px 0px 15px, rgba(0, 104, 255, 0.3) 0px 0px 3px 1px",
-        color: "whiteAlpha.900",
-        border: "1px solid rgba(0, 134, 255, 1)"
-      }
-    }),
-    collapse: (props: Dict<never>) => ({
-      bg: "transparent",
-      fontSize: "md",
-      p: 2,
-      h: 8,
-      color: "brand.hover",
-      textDecoration: "underline",
-      _hover: {
-        bg: mode(
-          whiten("brand.secondary", 20),
-          darken("brand.secondary", 20)
-        )(props),
-        color: "whiteAlpha.900",
-        textDecoration: "none"
       }
     }),
     submit: (props: Dict<never>) => ({
@@ -150,6 +102,15 @@ const buttonStyles = {
         boxShadow:
           "rgba(0, 134, 255, 0.5) 0px 0px 15px, rgba(0, 134, 255, 0.3) 0px 0px 3px 1px",
         border: "1px solid #0068ff"
+      }
+    }),
+    cancel: (props: Dict<never>) => ({
+      bg: "brand.danger",
+      fontSize: "md",
+      px: 2,
+      color: "blackAlpha.900",
+      _hover: {
+        bg: mode(whiten("brand.danger", 20), darken("brand.danger", 20))(props)
       }
     })
   },

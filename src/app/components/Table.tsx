@@ -1,6 +1,6 @@
 import { Heading, VStack } from "@chakra-ui/react";
 import React from "react";
-import Card from "./card";
+import Card from "./Card";
 
 const Table = (): JSX.Element => {
   return (

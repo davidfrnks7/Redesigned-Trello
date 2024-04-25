@@ -5,8 +5,8 @@ const initialState: Project = {
   id: "",
   ownerId: "",
   title: "",
-  creationDate: new Date(),
-  updatedDate: new Date()
+  creationDate: new Date().toString(),
+  updatedDate: new Date().toString()
 };
 
 const projectSlice = createSlice({
@@ -14,9 +14,9 @@ const projectSlice = createSlice({
   initialState,
   reducers: {
     // Create a new project
-    createProject(state: Project, action: PayloadAction<string>) {
+    createProject: (state: Project, action: PayloadAction<string>) => {
       const newTitle = action.payload;
-      const newDate = new Date();
+      const newDate = new Date().toString();
       const newUserId = createId();
       const newId = createId();
 
@@ -27,16 +27,19 @@ const projectSlice = createSlice({
       state.updatedDate = newDate;
     },
     // Update title or updated date
-    updateProject(state: Project, action: PayloadAction<string | undefined>) {
+    updateProject: (
+      state: Project,
+      action: PayloadAction<string | undefined>
+    ) => {
       const newTitle = action.payload || state.title;
-      const newDate = new Date();
+      const newDate = new Date().toString();
 
       state.title = newTitle;
       state.updatedDate = newDate;
     },
     // Delete Project
-    removeProject(state: Project) {
-      const newDate = new Date();
+    removeProject: (state: Project) => {
+      const newDate = new Date().toString();
 
       state.id = "";
       state.ownerId = "";

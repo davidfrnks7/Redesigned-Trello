@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import projectsSlice from "./projects/projectsSlice";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {}
+    reducer: {
+      project: projectsSlice
+    }
   });
 };
 

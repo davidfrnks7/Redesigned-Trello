@@ -4,8 +4,8 @@ interface Table {
   title: string;
   order: number;
   cards: TableCard[];
-  creationDate: Date;
-  updatedDate: Date;
+  creationDate: string;
+  updatedDate: string;
 }
 
 interface TableSlice extends Table {
