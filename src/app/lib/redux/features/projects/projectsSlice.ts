@@ -5,6 +5,7 @@ const initialState: Project = {
   id: "",
   ownerId: "",
   title: "",
+  slug: "",
   creationDate: new Date().toString(),
   updatedDate: new Date().toString()
 };
@@ -21,6 +22,7 @@ const projectSlice = createSlice({
       const newId = createId();
 
       state.id = newId;
+      state.slug = newTitle.replaceAll(" ", "-");
       state.ownerId = newUserId;
       state.title = newTitle;
       state.creationDate = newDate;

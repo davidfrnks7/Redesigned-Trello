@@ -12,7 +12,7 @@ const Table = (): JSX.Element => {
       alignContent="center"
       borderRadius="25px"
     >
-      <Heading as="h2" m={4} w="auto" h="auto">
+      <Heading as="h4" m={4} w="auto" h="auto">
         {"Example Table"}
       </Heading>
       <VStack

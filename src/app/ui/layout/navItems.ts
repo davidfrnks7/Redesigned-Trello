@@ -3,7 +3,7 @@ export type NavItems = NavItem[];
 
 const navItems: NavItems = [
   ["Home", "/"],
-  ["Project", "/project"],
+  // ["Project", "/project"],
   ["About", "/about"]
 ];
 

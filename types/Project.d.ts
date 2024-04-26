@@ -1,7 +1,8 @@
 interface Project {
   id: string;
-  ownerId: string;
   title: string;
+  slug: string;
+  ownerId: string;
   creationDate: string;
   updatedDate: string;
 }
