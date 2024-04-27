@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
   const pathname = usePathname();
 
-  const project: Project = useAppSelector((state) => state.project);
+  const project: Project = useAppSelector(state => state.project);
   const dispatch = useAppDispatch();
 
   // Mobile Menu Icon && Open/Close
@@ -77,11 +77,11 @@ const Header: React.FC = () => {
         </Heading>
       </Box>
 
-      {pathname !== null && pathname.split("/")[1] === "projects" && (
+      {pathname?.split("/")[1] === "projects" ? (
         <Heading textAlign="center" w="100%" as="h1" fontSize="2xl">
           {project.title}
         </Heading>
-      )}
+      ) : undefined}
 
       {/* Desktop Nav Items and Mobile Menu Button */}
       <HStack w="100%" h="auto" alignItems="center" justifyContent="flex-end">

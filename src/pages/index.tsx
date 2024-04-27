@@ -10,7 +10,7 @@ import CreateButton from "@/app/components/buttons/CreateButton";
 const Home: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const project: Project = useAppSelector((state) => state.project);
+  const project: Project = useAppSelector(state => state.project);
 
   return (
     <main>
@@ -42,7 +42,7 @@ const Home: NextPageWithLayout = () => {
             buttonText="Create your first project"
           />
         )}
-        {isOpen && <NewProjectModal isOpen onClose={onClose} />}
+        {isOpen ? <NewProjectModal isOpen onClose={onClose} /> : undefined}
       </Box>
     </main>
   );

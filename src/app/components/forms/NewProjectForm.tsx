@@ -10,7 +10,7 @@ import {
 import { Formik, Form, Field, FieldProps } from "formik";
 import React, { useEffect, useState } from "react";
 import EmojiValidate from "./EmojiValidate";
-import { useAppSelector, useAppDispatch } from "@/app/lib/redux/hooks";
+import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { createProject } from "@/app/lib/redux/features/projects/projectsSlice";
 
 interface NewProjectFormProps {
@@ -19,7 +19,6 @@ interface NewProjectFormProps {
 
 const NewProjectForm = ({ onClose }: NewProjectFormProps): JSX.Element => {
   // Redux
-  const project: Project = useAppSelector((state) => state.project);
   const dispatch = useAppDispatch();
 
   // Form field valid status.
@@ -69,12 +68,13 @@ const NewProjectForm = ({ onClose }: NewProjectFormProps): JSX.Element => {
     projectName
   }: FormFields): Promise<boolean> => {
     return await new Promise((resolve, reject) => {
-      dispatch(createProject(projectName));
+      const returnData = dispatch(createProject(projectName));
+      const actualTitle = returnData.payload;
 
-      if (project.title === projectName) {
-        resolve(true);
-
+      if (actualTitle === projectName) {
         onClose();
+
+        return resolve(true);
       }
 
       return reject(false);
@@ -105,7 +105,7 @@ const NewProjectForm = ({ onClose }: NewProjectFormProps): JSX.Element => {
       }}
       onSubmit={(data, actions) => {
         handleSubmit(data)
-          .then((status) => {
+          .then(status => {
             actions.setSubmitting(false);
             if (status) {
               actions.resetForm({
@@ -120,7 +120,7 @@ const NewProjectForm = ({ onClose }: NewProjectFormProps): JSX.Element => {
           });
       }}
     >
-      {(props) => (
+      {props => (
         <Form
           style={{
             width: "100%",
@@ -166,15 +166,15 @@ const NewProjectForm = ({ onClose }: NewProjectFormProps): JSX.Element => {
                       >
                         {"Project Name"}
                       </FormLabel>
-                      {!form.touched.projectName && (
+                      {!form.touched.projectName ? (
                         <EmojiValidate type="Required" />
-                      )}
-                      {form.errors.projectName && form.touched.projectName && (
+                      ) : undefined}
+                      {form.errors.projectName && form.touched.projectName ? (
                         <EmojiValidate type="Error" />
-                      )}
-                      {!form.errors.projectName && form.touched.projectName && (
+                      ) : undefined}
+                      {!form.errors.projectName && form.touched.projectName ? (
                         <EmojiValidate type="Valid" />
-                      )}
+                      ) : undefined}
                       <Input
                         ml={2}
                         required

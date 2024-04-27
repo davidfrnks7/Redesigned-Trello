@@ -57,7 +57,7 @@ const countUpcomingDue = (tasks: TableCard[]): number => {
 const countPastDue = (tasks: TableCard[]): number => {
   const pastDueCount = 0;
 
-  tasks.map((task) => {
+  tasks.map(task => {
     const { plannedDueDate } = task;
     if (plannedDueDate !== null) {
       // TODO: Use date-fns to check if the due date is within 2 dates of th current day.
@@ -80,7 +80,7 @@ const orderTables = (tables: Table[]): Table[] => {
 
   sortedTables.sort((a, b) => (a.order > b.order ? 1 : -1));
 
-  sortedTables.map((table) => {
+  sortedTables.map(table => {
     const { cards } = table;
     const orderedCard = orderCards(cards);
 
@@ -96,28 +96,40 @@ const projectSlice = createSlice({
   reducers: {
     // Create a new project
     createProject: (state: ProjectSlice, action: PayloadAction<string>) => {
+      // New info
       const newTitle = action.payload;
       const newDate = new Date().toString();
       const newUserId = createId();
       const newId = createId();
 
+      // Updating state
       state.id = newId;
       state.slug = newTitle.replaceAll(" ", "-");
       state.ownerId = newUserId;
       state.title = newTitle;
       state.creationDate = newDate;
       state.updatedDate = newDate;
+
+      // Checking new state and setting the payload to the project title.
+      const projectTitleAfterStateChange = state.title;
+      action.payload = projectTitleAfterStateChange;
     },
     // Update title or updated date
     updateProjectTitle: (
       state: ProjectSlice,
       action: PayloadAction<string>
     ) => {
+      // New Data
       const newTitle = action.payload || state.title;
       const newDate = new Date().toString();
 
+      //  Updating state
       state.title = newTitle;
       state.updatedDate = newDate;
+
+      // Checking new state and setting the payload to the project title.
+      const projectTitleAfterStateChange = state.title;
+      action.payload = projectTitleAfterStateChange;
     },
     // Delete Project
     removeProject: (state: ProjectSlice) => {
@@ -133,10 +145,9 @@ const projectSlice = createSlice({
     createTable: (state: ProjectSlice, action: PayloadAction<string>) => {
       // Current state
       const { id, tables } = state;
-      // Incoming sting
-      const tableName = action.payload;
 
-      // New data
+      // New Data
+      const tableName = action.payload;
       const newDate = new Date().toString();
       const newId = createId();
       const newOrder = tables.length - 1;
@@ -155,7 +166,12 @@ const projectSlice = createSlice({
         pastDueTasks: 0
       };
 
+      // Updating state
       state.tables.push(newTable);
+
+      // Checking new state and setting the payload to the name of the last table.
+      const lastTableTitleAfterStateChange = tables[tables.length - 1].title;
+      action.payload = lastTableTitleAfterStateChange;
     },
     // Create card
     createCard: (
@@ -192,7 +208,17 @@ const projectSlice = createSlice({
         updatedDate: newDate
       };
 
+      //  Updating state
       currTable.cards.push(newCard);
+
+      // Checking new state and setting the payload to the name of the last card.
+      const lastCardTitleAfterStateChange =
+        currTable.cards[currTable.cards.length - 1].title;
+      const lastCardInfo = {
+        tableIndex: currTable.cards.length - 1,
+        newCardTitle: lastCardTitleAfterStateChange
+      };
+      action.payload = lastCardInfo;
     }
   }
 });

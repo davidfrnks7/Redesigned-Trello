@@ -9,15 +9,15 @@ import CreateButton from "@/app/components/buttons/CreateButton";
 const ProjectPage = (): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const tables = useAppSelector((state) => state.project.tables);
+  const tables = useAppSelector(state => state.project.tables);
 
   return (
     <Box h="100vh" w="100vw">
-      {tables.length === 0 && (
+      {tables.length === 0 ? (
         <CreateButton onOpen={onOpen} buttonText="Create your first table" />
-      )}
-      {isOpen && <NewTableModal isOpen onClose={onClose} />}
-      {tables.length > 1 && (
+      ) : undefined}
+      {isOpen ? <NewTableModal isOpen onClose={onClose} /> : undefined}
+      {tables.length > 0 ? (
         <HStack
           h="100vh"
           w="100vw"
@@ -29,7 +29,7 @@ const ProjectPage = (): JSX.Element => {
             const { title, cards } = table;
             return (
               <TableTile
-                key={title}
+                key={`${title}-${index}`}
                 title={title}
                 cards={cards}
                 tableIndex={index}
@@ -37,7 +37,7 @@ const ProjectPage = (): JSX.Element => {
             );
           })}
         </HStack>
-      )}
+      ) : undefined}
     </Box>
   );
 };

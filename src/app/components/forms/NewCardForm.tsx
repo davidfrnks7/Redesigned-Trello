@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form, Field, FieldProps } from "formik";
 import React, { useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "@/app/lib/redux/hooks";
+import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { createCard } from "@/app/lib/redux/features/projects/projectsSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -22,7 +22,6 @@ const NewCardForm = ({
   setShowForm
 }: NewCardFormProps): JSX.Element => {
   // Redux
-  const tables: TableSlice[] = useAppSelector((state) => state.project.tables);
   const dispatch = useAppDispatch();
 
   // Form field valid status.
@@ -74,15 +73,17 @@ const NewCardForm = ({
         tableIndex,
         newCardTitle: cardName
       };
-      dispatch(createCard(newCardInfo));
 
-      if (tables[tables.length - 1].title === cardName) {
-        resolve(true);
+      const returnData = dispatch(createCard(newCardInfo));
+      const actualNewCard = returnData.payload;
 
+      if (actualNewCard.newCardTitle === cardName) {
         setShowForm(false);
-      }
 
-      return reject(false);
+        return resolve(true);
+      } else {
+        return reject(false);
+      }
     });
   };
 
@@ -110,7 +111,7 @@ const NewCardForm = ({
       }}
       onSubmit={(data, actions) => {
         handleSubmit(data)
-          .then((status) => {
+          .then(status => {
             actions.setSubmitting(false);
             if (status) {
               actions.resetForm({
@@ -125,7 +126,7 @@ const NewCardForm = ({
           });
       }}
     >
-      {(props) => (
+      {props => (
         <Form
           style={{
             width: "100%",
@@ -181,7 +182,7 @@ const NewCardForm = ({
                           : "")}
                         onMouseLeave={() => {
                           form.validateField("cardName");
-                          form.setFieldTouched("cardName'");
+                          form.setFieldTouched("cardName");
                         }}
                       />
                     </HStack>

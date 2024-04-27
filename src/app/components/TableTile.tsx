@@ -47,20 +47,26 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
       >
         {cards.map((card, index) => {
           const { title } = card;
-          return <Card key={title} cardTitle={title} cardIndex={index} />;
+          return (
+            <Card
+              key={`${title}-${index}`}
+              cardTitle={title}
+              cardIndex={index}
+            />
+          );
         })}
-        {showNewCardForm && (
+        {showNewCardForm ? (
           <NewCardForm
             setShowForm={setShowNewCardForm}
             tableIndex={tableIndex}
           />
-        )}
-        {(cards.length === 0 || mouseHover || showNewCardForm) && (
+        ) : undefined}
+        {cards.length === 0 || mouseHover || showNewCardForm ? (
           <CreateCard
             isFormOpen={showNewCardForm}
             toggleForm={setShowNewCardForm}
           />
-        )}
+        ) : undefined}
       </VStack>
     </VStack>
   );

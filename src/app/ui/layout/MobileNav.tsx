@@ -1,5 +1,6 @@
-import React, { FC, Fragment } from "react";
-import { Link, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
+import React, { FC } from "react";
+import Link from "next/link";
+import { MenuItem, MenuList } from "@chakra-ui/react";
 import navItems, { NavItem } from "./navItems";
 
 const MobileNav: FC<unknown> = () => {
@@ -14,26 +15,18 @@ const MobileNav: FC<unknown> = () => {
       border="none"
       boxShadow="none"
     >
-      {navItems.map((navItem: NavItem, index: number) => {
+      {navItems.map((navItem: NavItem) => {
         return (
           <MenuItem
+            as={Link}
+            href={navItem[1]}
             id={"mobile-" + navItem[0]}
             key={"mobile-" + navItem[0]}
-            w="auto"
-            h="auto"
-            p={0}
-            _hover={{
-              backgroundColor: "none"
-            }}
-            _focus={{
-              backgroundColor: "none"
-            }}
+            w="100vw"
+            h="50px"
+            textAlign="center"
           >
-            {index === 0 ? <MenuDivider /> : <Fragment></Fragment>}
-            <Link w="100vw" variant={"nav"} p={0} m="auto" href={navItem[1]}>
-              {navItem[0]}
-            </Link>
-            <MenuDivider />
+            {navItem[0]}
           </MenuItem>
         );
       })}

@@ -10,7 +10,7 @@ import {
 import { Formik, Form, Field, FieldProps } from "formik";
 import React, { useEffect, useState } from "react";
 import EmojiValidate from "./EmojiValidate";
-import { useAppSelector, useAppDispatch } from "@/app/lib/redux/hooks";
+import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { createTable } from "@/app/lib/redux/features/projects/projectsSlice";
 
 interface NewTableFormProps {
@@ -19,7 +19,6 @@ interface NewTableFormProps {
 
 const NewTableForm = ({ onClose }: NewTableFormProps): JSX.Element => {
   // Redux
-  const tables: TableSlice[] = useAppSelector((state) => state.project.tables);
   const dispatch = useAppDispatch();
 
   // Form field valid status.
@@ -67,12 +66,13 @@ const NewTableForm = ({ onClose }: NewTableFormProps): JSX.Element => {
 
   const handleSubmit = async ({ tableName }: FormFields): Promise<boolean> => {
     return await new Promise((resolve, reject) => {
-      dispatch(createTable(tableName));
+      const returnedData = dispatch(createTable(tableName));
+      const actualTitle = returnedData.payload;
 
-      if (tables[tables.length - 1].title === tableName) {
-        resolve(true);
-
+      if (actualTitle === tableName) {
         onClose();
+
+        return resolve(true);
       }
 
       return reject(false);
@@ -103,7 +103,7 @@ const NewTableForm = ({ onClose }: NewTableFormProps): JSX.Element => {
       }}
       onSubmit={(data, actions) => {
         handleSubmit(data)
-          .then((status) => {
+          .then(status => {
             actions.setSubmitting(false);
             if (status) {
               actions.resetForm({
@@ -118,7 +118,7 @@ const NewTableForm = ({ onClose }: NewTableFormProps): JSX.Element => {
           });
       }}
     >
-      {(props) => (
+      {props => (
         <Form
           style={{
             width: "100%",
@@ -158,15 +158,15 @@ const NewTableForm = ({ onClose }: NewTableFormProps): JSX.Element => {
                       <FormLabel htmlFor="tableName" w="30%" m={0} p={0} mr={2}>
                         {"Table Name"}
                       </FormLabel>
-                      {!form.touched.tableName && (
+                      {!form.touched.tableName ? (
                         <EmojiValidate type="Required" />
-                      )}
-                      {form.errors.tableName && form.touched.tableName && (
+                      ) : undefined}
+                      {form.errors.tableName && form.touched.tableName ? (
                         <EmojiValidate type="Error" />
-                      )}
-                      {!form.errors.tableName && form.touched.tableName && (
+                      ) : undefined}
+                      {!form.errors.tableName && form.touched.tableName ? (
                         <EmojiValidate type="Valid" />
-                      )}
+                      ) : undefined}
                       <Input
                         ml={2}
                         required

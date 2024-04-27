@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Button, HStack, Link } from "@chakra-ui/react";
+import Link from "next/link";
+import { Button, HStack } from "@chakra-ui/react";
 import navItems, { NavItem } from "./navItems";
 
 const DesktopNav: FC<unknown> = () => {
