@@ -1,18 +1,11 @@
 import React from "react";
 import Layout from "../app/layout";
 import { NextPageWithLayout } from "@/types/page";
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Heading,
-  useDisclosure
-} from "@chakra-ui/react";
+import { Box, HStack, Heading, useDisclosure } from "@chakra-ui/react";
 import { useAppSelector } from "@/app/lib/redux/hooks";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import NewProjectModal from "@/app/components/modals/NewProjectModal";
 import ProjectTile from "@/app/components/ProjectTile";
+import CreateButton from "@/app/components/buttons/CreateButton";
 
 const Home: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,19 +37,12 @@ const Home: NextPageWithLayout = () => {
             </HStack>
           </Box>
         ) : (
-          <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
-            <Button
-              onClick={() => {
-                onOpen();
-              }}
-              variant="project"
-              leftIcon={<Icon fontSize="2rem" icon="solar:add-circle-bold" />}
-            >
-              {"Create your first project"}
-            </Button>
-          </Flex>
+          <CreateButton
+            onOpen={onOpen}
+            buttonText="Create your first project"
+          />
         )}
-        {isOpen && <NewProjectModal isOpen={isOpen} onClose={onClose} />}
+        {isOpen && <NewProjectModal isOpen onClose={onClose} />}
       </Box>
     </main>
   );

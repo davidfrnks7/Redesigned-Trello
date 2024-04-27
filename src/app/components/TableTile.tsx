@@ -1,8 +1,28 @@
+"use client";
 import { Heading, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Card from "./Card";
+import NewCardForm from "./forms/NewCardForm";
+import CreateCard from "./buttons/CreateCard";
 
-const Table = (): JSX.Element => {
+interface TableProps {
+  title: string;
+  tableIndex: number;
+  cards: TableCard[];
+}
+
+const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
+  const [showNewCardForm, setShowNewCardForm] = useState<boolean>(false);
+  const [mouseHover, setMoueHover] = useState<boolean>(false);
+
+  const onMouseEnter = (): void => {
+    setMoueHover(true);
+  };
+
+  const onMouseLeave = (): void => {
+    setMoueHover(false);
+  };
+
   return (
     <VStack
       minH="80vh"
@@ -11,9 +31,11 @@ const Table = (): JSX.Element => {
       justifyContent="flex-start"
       alignContent="center"
       borderRadius="25px"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <Heading as="h4" m={4} w="auto" h="auto">
-        {"Example Table"}
+        {title}
       </Heading>
       <VStack
         w="100%"
@@ -23,11 +45,22 @@ const Table = (): JSX.Element => {
         spacing={4}
         px={4}
       >
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {cards.map((card, index) => {
+          const { title } = card;
+          return <Card key={title} cardTitle={title} cardIndex={index} />;
+        })}
+        {showNewCardForm && (
+          <NewCardForm
+            setShowForm={setShowNewCardForm}
+            tableIndex={tableIndex}
+          />
+        )}
+        {(cards.length === 0 || mouseHover || showNewCardForm) && (
+          <CreateCard
+            isFormOpen={showNewCardForm}
+            toggleForm={setShowNewCardForm}
+          />
+        )}
       </VStack>
     </VStack>
   );

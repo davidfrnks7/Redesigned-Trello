@@ -1,17 +1,20 @@
-interface Tag {
+interface CardTag {
   id: string;
+  cardId: string;
   name: string;
   color: string;
 }
 
-interface ChecklistItem {
+interface CardChecklistItem {
   id: IdleDeadline;
+  cardId: string;
   name: string;
   completed: boolean;
 }
 
 interface CardComment {
   id: string;
+  cardId: string;
   message: string;
   creationDate: Date;
   updatedDate: Date;
@@ -19,12 +22,13 @@ interface CardComment {
 
 interface TableCard {
   id: string;
+  tableId: string;
   title: string;
   description: string;
   complexity: Complexity | null;
-  tags: Tag[];
-  plannedDueDate: Date | null;
-  checklist: ChecklistItem[];
+  tags: CardTag[];
+  plannedDueDate: string | null;
+  checklist: CardChecklistItem[];
   activity: CardComment[];
   order: number;
   completed: boolean;

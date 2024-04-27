@@ -6,3 +6,7 @@ interface Project {
   creationDate: string;
   updatedDate: string;
 }
+
+interface ProjectSlice extends Project {
+  tables: TableSlice[];
+}

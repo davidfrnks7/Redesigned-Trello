@@ -14,7 +14,7 @@ const calculatePercentageCompleted = (tasks: TableCard[]): number => {
       totalTasks += checklist.length;
       let completedChecklistItems = 0;
 
-      checklist.map((checklistItem: ChecklistItem) => {
+      checklist.map((checklistItem: CardChecklistItem) => {
         const { completed } = checklistItem;
 
         if (completed) {
