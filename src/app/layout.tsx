@@ -3,7 +3,6 @@ import React, { ReactNode } from "react";
 import { Providers } from "./providers";
 import Header from "./ui/layout/Header";
 // import Footer from "./ui/layout/Footer";
-import { inter } from "@/app/ui/fonts";
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,7 +13,7 @@ interface LayoutProps {
 const RootLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body>
         <Providers>
           <Header />
           {children}

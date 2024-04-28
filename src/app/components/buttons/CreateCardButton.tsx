@@ -7,7 +7,7 @@ interface CreateCardProps {
   toggleForm: (bool: boolean) => void;
 }
 
-const CreateCard = ({
+const CreateCardButton = ({
   isFormOpen,
   toggleForm
 }: CreateCardProps): JSX.Element => {
@@ -38,4 +38,4 @@ const CreateCard = ({
   );
 };
 
-export default CreateCard;
+export default CreateCardButton;

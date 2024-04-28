@@ -136,10 +136,12 @@ const projectSlice = createSlice({
       const newDate = new Date().toString();
 
       state.id = "";
-      state.ownerId = "";
       state.title = "";
+      state.slug = "";
+      state.ownerId = "";
       state.creationDate = newDate;
       state.updatedDate = newDate;
+      state.tables = [] as TableSlice[];
     },
     // Create Table
     createTable: (state: ProjectSlice, action: PayloadAction<string>) => {
@@ -219,6 +221,29 @@ const projectSlice = createSlice({
         newCardTitle: lastCardTitleAfterStateChange
       };
       action.payload = lastCardInfo;
+    },
+    // Remove card
+    deleteCard: (
+      state: ProjectSlice,
+      action: PayloadAction<{
+        tableIndex: number;
+        cardIndex: number;
+        cardId: string | undefined;
+      }>
+    ) => {
+      // Card to delete
+      const { tableIndex, cardIndex } = action.payload;
+
+      // Cards array from state
+      const cards: TableCard[] = state.tables[tableIndex].cards;
+
+      // Remove the card from the array
+      const deletedCard: TableCard | undefined = cards
+        .splice(cardIndex, 1)
+        ?.at(0);
+
+      // Validate the correct card was deleted and set it's id to the payload.
+      action.payload.cardId = deletedCard?.id;
     }
   }
 });
@@ -228,6 +253,7 @@ export const {
   updateProjectTitle,
   removeProject,
   createTable,
-  createCard
+  createCard,
+  deleteCard
 } = projectSlice.actions;
 export default projectSlice.reducer;

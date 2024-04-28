@@ -3,7 +3,7 @@ import { Heading, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Card from "./Card";
 import NewCardForm from "./forms/NewCardForm";
-import CreateCard from "./buttons/CreateCard";
+import CreateCardButton from "./buttons/CreateCardButton";
 
 interface TableProps {
   title: string;
@@ -34,7 +34,7 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <Heading as="h4" m={4} w="auto" h="auto">
+      <Heading as="h3" m={4} w="auto" h="auto">
         {title}
       </Heading>
       <VStack
@@ -52,6 +52,8 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
               key={`${title}-${index}`}
               cardTitle={title}
               cardIndex={index}
+              cardId={card.id}
+              tableIndex={tableIndex}
             />
           );
         })}
@@ -62,7 +64,7 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
           />
         ) : undefined}
         {cards.length === 0 || mouseHover || showNewCardForm ? (
-          <CreateCard
+          <CreateCardButton
             isFormOpen={showNewCardForm}
             toggleForm={setShowNewCardForm}
           />

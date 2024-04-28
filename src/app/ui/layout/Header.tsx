@@ -78,8 +78,8 @@ const Header: React.FC = () => {
       </Box>
 
       {pathname?.split("/")[1] === "projects" ? (
-        <Heading textAlign="center" w="100%" as="h1" fontSize="2xl">
-          {project.title}
+        <Heading textAlign="center" w="100%" as="h2" fontSize="2xl">
+          {project.title.length > 0 ? project.title : ""}
         </Heading>
       ) : undefined}
 
