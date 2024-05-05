@@ -1,13 +1,12 @@
+"use client"
 import React from "react";
-import Layout from "../app/layout";
-import { NextPageWithLayout } from "@/types/page";
 import { Box, HStack, Heading, useDisclosure } from "@chakra-ui/react";
 import { useAppSelector } from "@/app/lib/redux/hooks";
 import NewProjectModal from "@/app/components/modals/NewProjectModal";
 import ProjectTile from "@/app/components/ProjectTile";
 import CreateButton from "@/app/components/buttons/CreateButton";
 
-const Home: NextPageWithLayout = () => {
+const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const project: Project = useAppSelector(state => state.project);
@@ -46,10 +45,6 @@ const Home: NextPageWithLayout = () => {
       </Box>
     </main>
   );
-};
-
-Home.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
 };
 
 export default Home;
