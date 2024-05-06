@@ -5,6 +5,7 @@ import { Box, HStack, useDisclosure } from "@chakra-ui/react";
 import NewTableModal from "@/app/components/modals/NewTableModal";
 import TableTile from "@/app/components/TableTile";
 import CreateButton from "@/app/components/buttons/CreateButton";
+import AddElementButton from "@/app/components/buttons/AddElementButton";
 
 const ProjectPage = (): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,6 +37,14 @@ const ProjectPage = (): JSX.Element => {
               />
             );
           })}
+          {tables.length > 0 ? (
+            <AddElementButton
+              isElementOpen={isOpen}
+              onElementOpen={onOpen}
+              onElementClose={onClose}
+              isFullSize={false}
+            />
+          ) : undefined}
         </HStack>
       ) : undefined}
     </Box>

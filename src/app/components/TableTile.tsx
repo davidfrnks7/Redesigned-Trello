@@ -3,7 +3,7 @@ import { Heading, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Card from "./Card";
 import NewCardForm from "./forms/NewCardForm";
-import CreateCardButton from "./buttons/CreateCardButton";
+import AddElementButton from "./buttons/AddElementButton";
 
 interface TableProps {
   title: string;
@@ -64,9 +64,11 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
           />
         ) : undefined}
         {cards.length === 0 || mouseHover || showNewCardForm ? (
-          <CreateCardButton
-            isFormOpen={showNewCardForm}
-            toggleForm={setShowNewCardForm}
+          <AddElementButton
+            isElementOpen={showNewCardForm}
+            toggleElement={setShowNewCardForm}
+            isFullSize={cards.length === 0 ? true : false}
+            elementName={cards.length === 0 ? "card" : undefined}
           />
         ) : undefined}
       </VStack>

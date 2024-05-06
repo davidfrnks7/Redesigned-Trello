@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
   Button
 } from "@chakra-ui/react";
-import { Formik, Form, Field, FieldProps } from "formik";
+import { Formik, Form, Field } from "formik";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { createCard } from "@/app/lib/redux/features/projects/projectsSlice";
@@ -126,12 +126,20 @@ const NewCardForm = ({
           });
       }}
     >
-      {props => (
+      {({
+        handleSubmit,
+        errors,
+        touched,
+        isSubmitting,
+        validateField,
+        setFieldTouched
+      }) => (
         <Form
           style={{
             width: "100%",
             height: "100%"
           }}
+          onSubmit={handleSubmit}
         >
           <HStack
             spacing={2}
@@ -140,69 +148,59 @@ const NewCardForm = ({
             w="100%"
             h="auto"
           >
-            <Field name="cardName" validate={validateCardName}>
-              {({ field, form }: FieldProps) => (
-                <FormControl
-                  isInvalid={
-                    form.errors.cardName && form.touched.cardName ? true : false
-                  }
+            <FormControl isInvalid={!!errors.cardName && touched.cardName}>
+              <VStack
+                h="auto"
+                w="100%"
+                spacing={0}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <HStack
+                  h="auto"
+                  w="100%"
+                  spacing={0}
+                  alignItems="center"
+                  justifyContent="center"
                 >
-                  <VStack
-                    h="auto"
-                    w="100%"
-                    spacing={0}
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <HStack
-                      h="auto"
-                      w="100%"
-                      spacing={0}
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Input
-                        ml={2}
-                        required
-                        {...fieldTheme}
-                        type="text"
-                        isDisabled={form.isSubmitting}
-                        {...field}
-                        id="cardName"
-                        placeholder="Completed Tasks"
-                        {...(!form.errors.cardName && form.touched.cardName
-                          ? {
-                              borderColor: "brand.valid",
-                              boxShadow: "0 0 0 1px #00c17c",
-                              _hover: {
-                                borderColor: "brand.valid",
-                                boxShadow: "0 0 0 1px #00c17c"
-                              }
-                            }
-                          : "")}
-                        onMouseLeave={() => {
-                          form.validateField("cardName");
-                          form.setFieldTouched("cardName");
-                        }}
-                      />
-                    </HStack>
-                    <FormErrorMessage>
-                      {typeof form.errors.cardName === "string"
-                        ? form.errors.cardName
-                        : ""}
-                    </FormErrorMessage>
-                  </VStack>
-                </FormControl>
-              )}
-            </Field>
+                  <Field
+                    as={Input}
+                    id="cardName"
+                    type="text"
+                    name="cardName"
+                    placeholder="Completed Tasks"
+                    ml={2}
+                    required
+                    {...fieldTheme}
+                    isDisabled={isSubmitting}
+                    {...(!errors.cardName && touched.cardName
+                      ? {
+                          borderColor: "brand.valid",
+                          boxShadow: "0 0 0 1px #00c17c",
+                          _hover: {
+                            borderColor: "brand.valid",
+                            boxShadow: "0 0 0 1px #00c17c"
+                          }
+                        }
+                      : "")}
+                    onMouseLeave={() => {
+                      validateField("cardName");
+                      setFieldTouched("cardName");
+                    }}
+                    validate={validateCardName}
+                  />
+                </HStack>
+                <FormErrorMessage>
+                  {typeof errors.cardName === "string" ? errors.cardName : ""}
+                </FormErrorMessage>
+              </VStack>
+            </FormControl>
             <Button
               variant="submit"
-              isDisabled={!validForm}
-              background={validForm ? "brand.valid" : "brand.danger"}
-              isLoading={props.isSubmitting}
               type="submit"
               p={0}
-              bg=""
+              isDisabled={!validForm}
+              isLoading={isSubmitting}
             >
               {validForm ? (
                 <Icon fontSize="3rem" icon="solar:check-circle-bold" />

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { Box, HStack, Heading, useDisclosure } from "@chakra-ui/react";
 import { useAppSelector } from "@/app/lib/redux/hooks";
