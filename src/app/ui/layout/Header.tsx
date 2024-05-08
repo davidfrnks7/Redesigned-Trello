@@ -16,7 +16,7 @@ import MobileNav from "./MobileNav";
 import { createProject } from "@/app/lib/redux/features/projects/projectsSlice";
 
 const Header: React.FC = () => {
-  const appName = "Redesigned Trello";
+  const appName = "TaskFlow";
 
   const pathname = usePathname();
 

@@ -1,1 +1,1 @@
-type Complexity = "High" | "Medium" | "Low";
+type Complexity = "High" | "Medium" | "Low" | null;

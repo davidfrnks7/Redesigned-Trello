@@ -1,30 +1,38 @@
 "use client";
-import { Box, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import DeleteCardButton from "./buttons/DeleteCardButton";
+import { Box, Text, useDisclosure } from "@chakra-ui/react";
+import React from "react";
+import TaskModal from "./modals/TaskModal";
 
-interface CardProps {
+export interface CardProps {
+  card: TableCard;
   cardIndex: number;
-  cardTitle: string;
   tableIndex: number;
-  cardId: string;
+  tableTitle: string;
 }
 
 const Card = ({
-  cardTitle,
+  card,
   cardIndex,
-  cardId,
-  tableIndex
+  tableIndex,
+  tableTitle
 }: CardProps): JSX.Element => {
-  const [mouseHover, setMoueHover] = useState<boolean>(false);
+  const {
+    id,
+    tableId,
+    title,
+    description,
+    complexity,
+    tags,
+    plannedDueDate,
+    checklist,
+    activity,
+    order,
+    completed,
+    creationDate,
+    updatedDate
+  } = card;
 
-  const onMouseEnter = (): void => {
-    setMoueHover(true);
-  };
-
-  const onMouseLeave = (): void => {
-    setMoueHover(false);
-  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box
@@ -33,19 +41,20 @@ const Card = ({
       w="100%"
       h="fit-content"
       borderRadius="25px"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onClick={onOpen}
+      cursor="pointer"
     >
       <Text m={4} fontSize="lg">
-        {cardTitle}
+        {title}
       </Text>
-      {mouseHover ? (
-        <DeleteCardButton
-          tableIndex={tableIndex}
-          cardId={cardId}
-          cardIndex={cardIndex}
-        />
-      ) : undefined}
+      <TaskModal
+        card={card}
+        cardIndex={cardIndex}
+        tableIndex={tableIndex}
+        tableTitle={tableTitle}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Box>
   );
 };

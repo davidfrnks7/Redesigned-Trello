@@ -46,14 +46,13 @@ const Table = ({ tableIndex, title, cards }: TableProps): JSX.Element => {
         px={4}
       >
         {cards.map((card, index) => {
-          const { title } = card;
           return (
             <Card
-              key={`${title}-${index}`}
-              cardTitle={title}
+              key={`${card.title}-${card.id}`}
+              card={card}
               cardIndex={index}
-              cardId={card.id}
               tableIndex={tableIndex}
+              tableTitle={title}
             />
           );
         })}
